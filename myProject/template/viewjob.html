@@ -1,0 +1,106 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-header {
+            background-color: #321538;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin: 0;
+            padding: 5px 0;
+        }
+    </style>
+    <title>Job Dashboard</title>
+</head>
+<body>
+
+<div class="container">
+    {% if msg %}
+    {{msg}}
+    {% else %}
+    {% for i in job %}
+    <div class="card">
+        <div class="card-header">{{i.job_title}}</div>
+        <div class="card-body">
+            <p><strong>Company Name :</strong> {{i.company_name}}</p>
+            <p><strong>Location:</strong> {{i.job_location}}</p>
+            <p><strong>Created by :</strong> {{i.job_creator}} </p>
+            <p><strong>Description :</strong> {{i.job_description}} </p>
+
+            {% if user.user_type == "recruiter" %}
+        
+            <p><strong>Qualification:</strong> {{i.qualification}}</p>
+            <p><img src="/{{i.company_logo}}" alt="company_logo" height="60px" width="60px"></p>
+            <p><strong>Created by :</strong> {{i.job_creator}} </p>
+            <p><strong>Create Time :</strong> {{i.create_at}} </p>
+           
+           
+            {% endif %}
+
+
+            {% if user.user_type == "jobseeker" %}
+            <p><strong>Deadline:</strong> {{i.deadline}}</p>
+           
+            <a href="{% url 'applyjobPage' i.id %}">Apply Now </a>
+            {% endif %}
+
+            {% if user.user_type == "recruiter" %}
+            <a href="{% url 'jobIdCall' i.id %}">Edit </a> <br>
+            <a href="{% url 'deletejob' i.id %}">Delete </a>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+</body>
+</html>
+
+
+{% endblock %}

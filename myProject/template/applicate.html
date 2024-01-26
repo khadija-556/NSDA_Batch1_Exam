@@ -1,0 +1,74 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+          
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .field {
+            margin-bottom: 10px;
+        }
+
+        .field label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .field span {
+            color: #555;
+        }
+    </style>
+    <title>Card View</title>
+</head>
+<body>
+
+    {% for i in job %}
+
+<div class="card">
+    <div class="field">
+        <label for="jobTitle">Job Title</label>
+        <span id="jobTitle">{{i.job.job_title}}</span>
+    </div>
+
+    <div class="field">
+        <label for="companyName">Company Name</label>
+        <span id="companyName">{{i.job.company_name}}</span>
+    </div>
+
+    <div class="field">
+        <label for="skills">Skills</label>
+        <span id="skills">JavaScript, Python, HTML, CSS</span>
+    </div>
+</div>
+
+{% endfor %}
+</body>
+
+</html>
+
+
+{% endblock %}

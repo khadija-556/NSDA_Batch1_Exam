@@ -1,0 +1,32 @@
+{% block content %}
+
+<nav>
+    {% if user.user_type == "jobseeker" %}
+    
+
+    <a href="#home">Home</a>
+    <a href="{% url 'jobviewPage' %}">View Job</a>
+    <a href="{% url 'appliedjobPage' %}">Applied Job</a>
+    <a href="{% url 'profilePage' %}">Profile</a>
+    <a href="{% url 'logoutPage' %}">Logout</a>
+
+    {% elif user.user_type == "recruiter" %}
+    
+    <a href="#home">Home</a>
+    <a href="{% url 'jobviewPage' %}">View Job</a>
+    <a href="{% url 'jobaddPage' %}">Add Job</a>
+    <a href="{% url 'profilePage' %}">Profile</a>
+    <a href="{% url 'logoutPage' %}">Logout</a>
+
+    {% endif %}
+
+    <div class="search-container">
+        <form method="get">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+</nav>
+
+
+{% endblock %}

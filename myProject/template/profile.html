@@ -1,0 +1,114 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5eded;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-card {
+            background-color: #f9fafc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .profile-picture {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: auto;
+        }
+
+        .profile-field {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .user-info {
+            font-size: 14px;
+        }
+    </style>
+    <title>User Profile Card</title>
+</head>
+<body>
+    <div class="conteiner">
+        <div class="profile-card">
+            <div class="profile-picture">
+                <img src="/{{request.user.profile_pic}}" alt="Profile Picture">
+            </div>
+            <div class="profile-field user-info">
+                <h1>{{request.user.display_name}}</h1>
+                
+            </div>
+            
+
+            <div class="profile-field user-info">
+                <label for="about">About:</label>
+                <span id="user_type">{{request.user.about}}</span>
+            </div>
+
+            {% if user.user_type == 'jobseeker' %}
+
+            <div class="profile-field user-info">
+                <label for="about">Skill:</label>
+                <span id="user_type">{{request.user.khadija.skills}}</span>
+            </div>
+           
+            {% endif %}
+
+        
+            <button><a href="{% url 'editProfilePage' %}">Update Profile </a></button>
+            <button><a href="{% url 'changePassord' %}">change password </a></button>
+            <button><a href="{% url 'viewjobProfile' %}">View job </a></button>
+      {% if user.user_type == 'jobseeker' %}
+      {% if user.khadija.cv %}
+      <a href="{{request.user.khadija.cv.url}}" target="_blank">CV</a>
+      {% endif %}
+      {% endif %}
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+{% endblock %}
+
+
+<!-- {% if request.user.user_type == "recruiter" %}
+
+<h1>Hi I am Recruiter</h1>
+<h1>{{request.user}}</h1>
+
+{% elif request.user.user_type == "jobseeker" %}
+
+<h1>Hi I am Jobseeker</h1>
+<h1>{{request.user}}</h1>
+
+{% endif %} -->

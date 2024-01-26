@@ -1,0 +1,143 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .form-group button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }   
+
+        
+        
+    </style>
+</head>
+<body>
+
+<h1> Information Form</h1>
+
+<div class="form-container">
+    <form action="#" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="Skill">Skill:</label>
+            <input type="text" id="Skill" name="Skill" required>
+        </div >
+        <div class="form-group">
+            <label for="phone">phone:</label>
+            <input type="phone" id="phone" name="phone" >
+          
+        </div>
+
+        <div class="form-group">
+            
+        <label for="Photo">Photo:</label>
+        <input type="Photo" id="Photo" name="Photo" >
+    
+        </div>
+
+        <div class="form-group">
+            
+            <label for="Address">Address:</label>
+            <input type="Address" id="Address" name="Address" >
+        </div>
+
+        <div class="form-group">
+            
+            <label for="excepted_salay">Excepted_salay:</label>
+            <input type="text" id="excepted_salay" name="excepted_salay" >
+        </div>
+
+        <div class="form-group">
+            
+            <label for="signature">signature:</label>
+            <input type="text" id="signature" name="signature" >
+        </div>
+
+        <div class="form-group">
+            
+            <label for="signature">cv_cover_latter:</label>
+            <input type="text" id="cv_cover_latter" name="cv_cover_latter" >
+        </div>
+
+        <div class="form-group">
+            
+             <label for="file">Upload File:</label>
+            <input type="file" id="file" name="file" accept=".txt, .pdf, .doc, .docx" required>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit">
+       </div>
+            
+        
+    
+    
+      
+    
+    
+    
+        <!-- Submit Button -->
+       
+    </form>
+
+</div>
+
+
+</body>
+</html>
+
+
+
+{% endblock %}
